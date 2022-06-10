@@ -1,0 +1,28 @@
+<table border="1">
+    <thead>
+      <tr>
+        <th>Payable_Links</th>
+        <th>Payable_Videos</th>
+        <th>Cost</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tr *ngFor="let mat of materialService.materials">
+      <td>{{mat.payable_Links}}</td>
+      <td>{{mat.payable_Videos}}</td>
+      <td>{{mat.cost}}</td>
+      <td>
+        <!-- <button class="btn btn-warning" [routerLink]="['/detail-view',mat._id]">View Detail</button>      -->
+    </td>
+        
+    </tr>
+  </table>
+  <p *ngIf="userName=='Sanju' else elsecase">
+    <button [routerLink]="['/material']" class="btn btn-primary">Add New Material</button>&nbsp;
+    <button [routerLink]="['/login']" class="btn btn-danger">Logout</button>&nbsp;
+</p>
+<ng-template #elsecase>
+    <button [routerLink]="['/course']" class="btn btn-primary">Back to Course</button>&nbsp;
+    <button [routerLink]="['/login']" class="btn btn-primary">logout</button>
+</ng-template>
+

@@ -1,0 +1,102 @@
+
+<!-- <div class="container">
+    <form [formGroup]="userform">
+        <input type="hidden" name="_id" id="_id" formControlName="_id"  [(ngModel)]="materialService.selectedMaterial._id">
+        <div>
+            
+        </div>
+       
+        <div>
+            
+        </div>
+        <label for="normal_Links"><b>Normal Links</b></label>
+        <div>
+            <textarea  id="normal_Links" name="normal_Links" formControlName="normal_Links" placeholder="normal_Links"></textarea><br>  
+        </div>
+        <div>
+            <label for="payable_Links"><b>Payable Links</b></label>
+            <div>
+                <textarea  id="payable_Links" name="payable_Links" formControlName="payable_Links" placeholder="payable_Links"></textarea><br>  
+            </div>
+        </div>
+        <label for="payable_Videos"><b>Payable video</b></label>
+        <div>
+            <textarea  id="payable_Videos" name="payable_Videos" formControlName="payable_Videos" placeholder="payable_Videos"></textarea><br>  
+        </div>
+        <div>
+            <label for="cost"><b>Cost</b></label>
+            <div>
+                <textarea  id="cost" name="cost" formControlName="cost" placeholder="cost"></textarea><br>  
+            </div>
+        </div>
+       
+        <div class="mb-1">
+            <div class="btn-group" role="group">
+                <button class="btn btn-info" [routerLink]="['/user']">Back</button>
+                <button (click)="save(userform.value)" [disabled]="userform.invalid" class="btn btn-primary" type="button">
+                    Save</button>
+                <button class="btn btn-secondary" (click)="resetForm(userform.value)" type="button">Reset </button>
+            </div>
+        </div>
+
+       
+    </form>
+</div> -->
+<form #materialForm="ngForm" (ngSubmit)="onSubmit(materialForm)">
+    <input type="hidden" name="_id" #_id="ngModel"
+        [(ngModel)]="materialService.selectedMaterial._id">
+        <div>
+            <label> Normal_Links: </label><br>
+            <input type="text" name="normal_Links" #name="ngModel"
+                [(ngModel)]="materialService.selectedMaterial.normal_Links"
+                placeholder="Normal Links for this topic">
+        </div>
+        <div>
+            <label>Payable_Links :</label><br>
+            <input type="text" name="payable_Links" #name="ngModel"
+                [(ngModel)]="materialService.selectedMaterial.payable_Links"
+                placeholder="Payable Links for this topic">
+        </div>
+        <div>
+            <label>Payable_Videos :</label><br>
+            <input type="text" name="payable_Videos" #name="ngModel"
+                [(ngModel)]="materialService.selectedMaterial.payable_Videos"
+                placeholder="Payable Videos link">
+        </div>
+        <div>
+            <label>Cost :</label><br>
+            <input type="text" name="cost" #name="ngModel"
+                [(ngModel)]="materialService.selectedMaterial.cost"
+                placeholder="Cost for this materials">
+        </div>
+    
+<div class="input-field col s12">
+<button class="btn btn-custom right" type="button" (click)="resetForm(materialForm)">Reset</button>
+<button class="btn btn-custom right" type="submit" [disabled]="!materialForm.valid">Submit</button>
+<button [routerLink]="['/user']" class="btn btn-primary">Admin View</button>
+</div>
+</form>
+<table border="1">
+    <thead>
+      <tr>
+        <th>Payable_Links</th>
+        <th>Payable_Videos</th>
+        <th>Cost</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tr *ngFor="let mat of materialService.materials">
+      <td>{{mat.payable_Links}}</td>
+      <td>{{mat.payable_Videos}}</td>
+      <td>{{mat.cost}}</td>
+      <td>
+          <button class="action-btn" (click)="onEdit(mat)">
+            <i class="material-icons">edit</i>
+          </button>
+          <button class="action-btn" (click)="onDelete(mat._id,materialForm)">
+            <i class="material-icons">delete</i>
+          </button>
+        </td>
+    </tr>
+  </table>
+

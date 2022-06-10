@@ -1,0 +1,10 @@
+<form #loginForm="ngForm">
+    <label>Name</label>
+    <input type="text"  [(ngModel)]="username" name="username" placeholder="UserName"><br>
+    <label>Password</label>
+    <input type="password"  [(ngModel)]="psw" name="psw"  placeholder="Password"><br>
+    <input type="button" value="Login" (click)="display(loginForm)">
+    
+</form>
+
+<p >{{loginForm.value|json}}</p>
